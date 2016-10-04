@@ -16,6 +16,16 @@
 @property (nonatomic, retain) AVPlayerViewController *avPlayerViewcontroller;
 @end
 
+static AVPlayerViewController *gPVC;
+
+// Attempt to resume playing after background/aTV sleep
+void resume_playing(void)
+{
+  if (gPVC.player.rate == 0) {
+    [gPVC.player play];
+  }
+}
+
 @implementation ViewController
 
 - (void)viewDidLoad {
@@ -34,6 +44,7 @@
   view.autoresizesSubviews = TRUE;
 
   [playerViewController.player play];
+  gPVC = playerViewController; // Yes, this is a hack
 }
 
 - (void)didReceiveMemoryWarning {

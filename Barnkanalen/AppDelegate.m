@@ -14,6 +14,8 @@
 
 @implementation AppDelegate
 
+extern void resume_playing(void); // Yes, this is one heck of a hack
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.
@@ -36,6 +38,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+  resume_playing();
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
